@@ -1,0 +1,36 @@
+﻿Dotnet can be installed on Windows, MAC, Linux (different vendor) & Docker(I don't knwo what a docker is)
+1) dotnet sdk and runtime can be downloaded from www.dotnet.com    
+2) After installation we can start development
+3) Some command to check and help you for development
+    a) dotnet -> check whether dotnet is installed on your machine
+    b) dotnet --v -> which version of dotnet is installed
+    c) dotnet --h -> it provide help on dotnet level
+    d) dotnet new --h -> it provide help on dotnet new level 
+    e) dotnet new console --h -> it provide help on dotnet new console level
+GO TRY IT 
+4) Creating a APP using command line
+	a) dotnet new console 
+	b) The command will create a new console application
+	c) it will also restore the packages and dependencies 
+	d) In pervious versions we had to run dotnet restore the above process to happen
+	e) In dotnet 2.0+, this feature has been added
+		(At the time of creating a appplication, packages dependencies are restored automatically)
+	f) To run the application we use the below command 
+		dotnet run
+	g) While running this command for the first time on newly created application 
+	   We will observer some delay as it will be first compile and build
+	h) Next run it will take less time to run the application
+	i) If you want to run this application in vs code, Use Command "Code ."
+	j) Click on Yes as vs code will need to add some file to debug the application(No Need to Touch does files)
+	k) I noticed that in my version of vs code(1.26.1) Step j was not prompted.
+	l) I had to update my vs code(1.27.1) and then go to debugger option -> 
+		Add Configuration ->  .Net Core 
+	m) Then it prompted me Step J 
+5) To run the application in the vs code, 
+	we need to use Terminal i.e Ctrl + ~ (Tilda Sign)
+6) For debugging the Application -> Go to Debugging Sign on the left 
+	-> Click on Green Play button -> VOLA we can debug the application in VS code
+7) Go to Launch.json in .vscode edit the name attribute "ToAnyThing" 
+	Now go to Debugging Option, you will be able to see "ToAnyThing" in drop down
+	i.e. we can also change this names (I don't known I saw scott doing it I did it.)
+8) Go to code.visualstudio.com for extension and all BRO 

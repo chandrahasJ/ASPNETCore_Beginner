@@ -1,0 +1,11 @@
+M:\MVA\MVATraining\ASPNETCore_Beginner\CoreNetCLIAndTemplating\bin\Debug\netcoreapp2.1\CoreNetCLIAndTemplating.deps.json
+M:\MVA\MVATraining\ASPNETCore_Beginner\CoreNetCLIAndTemplating\bin\Debug\netcoreapp2.1\CoreNetCLIAndTemplating.runtimeconfig.json
+M:\MVA\MVATraining\ASPNETCore_Beginner\CoreNetCLIAndTemplating\bin\Debug\netcoreapp2.1\CoreNetCLIAndTemplating.runtimeconfig.dev.json
+M:\MVA\MVATraining\ASPNETCore_Beginner\CoreNetCLIAndTemplating\bin\Debug\netcoreapp2.1\CoreNetCLIAndTemplating.dll
+M:\MVA\MVATraining\ASPNETCore_Beginner\CoreNetCLIAndTemplating\bin\Debug\netcoreapp2.1\CoreNetCLIAndTemplating.pdb
+M:\MVA\MVATraining\ASPNETCore_Beginner\CoreNetCLIAndTemplating\obj\Debug\netcoreapp2.1\CoreNetCLIAndTemplating.csprojAssemblyReference.cache
+M:\MVA\MVATraining\ASPNETCore_Beginner\CoreNetCLIAndTemplating\obj\Debug\netcoreapp2.1\CoreNetCLIAndTemplating.csproj.CoreCompileInputs.cache
+M:\MVA\MVATraining\ASPNETCore_Beginner\CoreNetCLIAndTemplating\obj\Debug\netcoreapp2.1\CoreNetCLIAndTemplating.AssemblyInfoInputs.cache
+M:\MVA\MVATraining\ASPNETCore_Beginner\CoreNetCLIAndTemplating\obj\Debug\netcoreapp2.1\CoreNetCLIAndTemplating.AssemblyInfo.cs
+M:\MVA\MVATraining\ASPNETCore_Beginner\CoreNetCLIAndTemplating\obj\Debug\netcoreapp2.1\CoreNetCLIAndTemplating.dll
+M:\MVA\MVATraining\ASPNETCore_Beginner\CoreNetCLIAndTemplating\obj\Debug\netcoreapp2.1\CoreNetCLIAndTemplating.pdb
