@@ -34,3 +34,11 @@ GO TRY IT
 	Now go to Debugging Option, you will be able to see "ToAnyThing" in drop down
 	i.e. we can also change this names (I don't known I saw scott doing it I did it.)
 8) Go to code.visualstudio.com for extension and all BRO 
+
+1 - 3 - Getting Started - Documentation & Community
+1) Documentation : https://docs.microsoft.com/en-in/
+2) Community : http://dotnetfoundation.org 
+3) News Videos : https://channel9.msdn.com
+4) Meetups & Conf : https://www.dotnetconf.net
+
+.Net Editor is avaiable as online playground for C#
