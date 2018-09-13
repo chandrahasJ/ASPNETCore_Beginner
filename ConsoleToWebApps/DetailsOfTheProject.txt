@@ -1,0 +1,13 @@
+1) To create a empty web project by command line 
+    dotnet new web -o <NameOFWebProject>
+    -o : Create a New Directory
+2) The *.csproj contains some more details as it is a web application
+    a) Microsoft.NET.Sdk.Web has been added in console application 
+        it was Microsoft.NET.Sdk;
+    b) We have Package Reference 
+        i.e. Microsoft.AspNetCore.App for .NET Core 2.1 
+        and Microsoft.AspNetCore.All for .NET Core 2.0
+3) In Net Core, Web Application is actually a Console App underneath
+    a) Just Go to Program.cs Comment Line below and add you code and 
+        Try running the app it works 
+            

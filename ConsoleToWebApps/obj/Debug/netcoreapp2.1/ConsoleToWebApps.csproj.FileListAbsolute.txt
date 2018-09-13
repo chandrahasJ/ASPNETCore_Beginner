@@ -1,0 +1,14 @@
+M:\MVA\MVATraining\ASPNETCore_Beginner\ConsoleToWebApps\bin\Debug\netcoreapp2.1\ConsoleToWebApps.deps.json
+M:\MVA\MVATraining\ASPNETCore_Beginner\ConsoleToWebApps\bin\Debug\netcoreapp2.1\ConsoleToWebApps.runtimeconfig.json
+M:\MVA\MVATraining\ASPNETCore_Beginner\ConsoleToWebApps\bin\Debug\netcoreapp2.1\ConsoleToWebApps.runtimeconfig.dev.json
+M:\MVA\MVATraining\ASPNETCore_Beginner\ConsoleToWebApps\bin\Debug\netcoreapp2.1\ConsoleToWebApps.dll
+M:\MVA\MVATraining\ASPNETCore_Beginner\ConsoleToWebApps\bin\Debug\netcoreapp2.1\ConsoleToWebApps.pdb
+M:\MVA\MVATraining\ASPNETCore_Beginner\ConsoleToWebApps\obj\Debug\netcoreapp2.1\ConsoleToWebApps.csprojAssemblyReference.cache
+M:\MVA\MVATraining\ASPNETCore_Beginner\ConsoleToWebApps\obj\Debug\netcoreapp2.1\ConsoleToWebApps.csproj.CoreCompileInputs.cache
+M:\MVA\MVATraining\ASPNETCore_Beginner\ConsoleToWebApps\obj\Debug\netcoreapp2.1\ConsoleToWebApps.RazorAssemblyInfo.cache
+M:\MVA\MVATraining\ASPNETCore_Beginner\ConsoleToWebApps\obj\Debug\netcoreapp2.1\ConsoleToWebApps.RazorAssemblyInfo.cs
+M:\MVA\MVATraining\ASPNETCore_Beginner\ConsoleToWebApps\obj\Debug\netcoreapp2.1\ConsoleToWebApps.AssemblyInfoInputs.cache
+M:\MVA\MVATraining\ASPNETCore_Beginner\ConsoleToWebApps\obj\Debug\netcoreapp2.1\ConsoleToWebApps.AssemblyInfo.cs
+M:\MVA\MVATraining\ASPNETCore_Beginner\ConsoleToWebApps\obj\Debug\netcoreapp2.1\ConsoleToWebApps.RazorTargetAssemblyInfo.cache
+M:\MVA\MVATraining\ASPNETCore_Beginner\ConsoleToWebApps\obj\Debug\netcoreapp2.1\ConsoleToWebApps.dll
+M:\MVA\MVATraining\ASPNETCore_Beginner\ConsoleToWebApps\obj\Debug\netcoreapp2.1\ConsoleToWebApps.pdb
