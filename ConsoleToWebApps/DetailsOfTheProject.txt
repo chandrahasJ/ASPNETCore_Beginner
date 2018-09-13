@@ -10,4 +10,14 @@
 3) In Net Core, Web Application is actually a Console App underneath
     a) Just Go to Program.cs Comment Line below and add you code and 
         Try running the app it works 
-            
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("Let's Check");
+            //CreateWebHostBuilder(args).Build().Run();
+        }    
+    b) Some Libary which are related to AspNetCore are listed below(Found in Program.cs)
+        1) Microsoft.AspNetCore
+        2) Microsoft.AspNetCore.Hosting
+        3) Microsoft.Extension.Configration
+        4) Microsoft.Extension.Configration.
+        5) 
