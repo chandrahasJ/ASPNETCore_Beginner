@@ -14,8 +14,8 @@ namespace ConsoleToWebApps
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Let's Check");
-            //CreateWebHostBuilder(args).Build().Run();
+            //Console.WriteLine("Let's Check");
+            CreateWebHostBuilder(args).Build().Run();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>

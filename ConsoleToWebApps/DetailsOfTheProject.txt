@@ -12,12 +12,30 @@
         Try running the app it works 
         public static void Main(string[] args)
         {
-            Console.WriteLine("Let's Check");
+            // IT Works
+            Console.WriteLine("Let's Check");        
             //CreateWebHostBuilder(args).Build().Run();
         }    
     b) Some Libary which are related to AspNetCore are listed below(Found in Program.cs)
         1) Microsoft.AspNetCore
         2) Microsoft.AspNetCore.Hosting
-        3) Microsoft.Extension.Configration
-        4) Microsoft.Extension.Configration.
-        5) 
+        3) Microsoft.Extensions.Configration
+        4) Microsoft.Extensions.Logging
+4)  The Below Line invokes a Web Application    
+    CreateWebHostBuilder(args).Build().Run();
+    The above CreateWebHostBuilder function requires StartUp Type Class
+5)  This StartUp Type Class need some method listed below to start the Web Application
+    a) ConfigureServices(IServiceCollection services);       
+        The Above method is use to add Services in service container
+        let say we want to use service like MVC then we can say services.AddMvc();
+        services.AddAuthentication(); and may more etc.         
+    b) Configure(IApplicationBuilder app,IHostingEnvironment env);
+        The Above method is use to Use those services which are added in ConfigureServices  
+        Let say we have added services.AddMvc() then in Configure we will be using 
+        app.UseMvc();
+        We can also add some Interface which we then can use Just like IHostingEnviroment or ILoggerFactory
+        The Above method is also used to configure Http Request PipeLine
+    [
+        Note : ConfigureServices : Load all the services required i.e. Add
+               Configure : Use those services i.e. Use
+    ]
