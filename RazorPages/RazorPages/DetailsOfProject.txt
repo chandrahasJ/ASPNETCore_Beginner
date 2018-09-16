@@ -1,0 +1,15 @@
+﻿1) To Change Enviroment Variable from Development Mode to Production or Visa-Versa
+	Right Click on Project Name(RazorPages) in Solution Explorer 
+	-> Properties -> Debug -> Enviroment Variable -> ASPNETCORE_ENVIRONMENT
+2) app.UseStaticFiles() -> If we add this in configure method inside the Startup Class
+	We can just get those pages also which doesn't have @page Directives.
+	But it will not serve these pages as dynamic pages(It won't execute the code) only static pages...
+3)  wwwroot -> This Folder will contain css,images,js files and static content...
+4)  _ViewImports.cshtml -> If you want to use some namespaces or using statement to be used throughout the 
+	application then we must add those inside _ViewImports.cshtml.
+5)  _ViewStart.cshtml -> it runs for every view(Currently I too don't knw about this much)
+	Currently it is used to set Layouts 
+6)  _Layout.cshtml -> It is a Razor Pages (Asp.net Reference Master Pages)
+	It contains @RenderBody() which actually renders other pages where @RenderBody() is located.
+	let say you clicked on /About link in the menu then /About Page will be loaded where 
+	@RenderBody() Tag/Directive is located.
