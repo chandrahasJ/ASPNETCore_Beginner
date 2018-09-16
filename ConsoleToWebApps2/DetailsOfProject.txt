@@ -1,0 +1,113 @@
+[
+    Character Map : To USE ASCII Keys we can use this window; Use Control + Run -> charmap
+    @page : It is indicator to app.UseMvc() that use only this page. 
+            if @page is not there we will not able to view that page by using route also.
+    Route : Route is the File Struture 
+            i.e. http://localhost:5000/solange/77 will lead you to file Pages/Solange/77.cshtml 
+    "Start ." : To open explorer to current path use this command
+]
+1) ConfigureService : (Inject)Add your services in a Collection(Container)
+2) Configure : Use those services which were added in Collection(Container)
+3) Order is Important i.e. As it is a HTTP Request Pipeline 
+    Order of using these services is Important.
+    Let say
+    app.UseMvc(); doesn't work for any reason
+
+    // Below is the default route if all the above provided route fail (For e.g. UseMvc())
+    app.Run(async (context) => {
+        await context.Response.WriteAsync("This will work");
+    });
+
+    ORDER IS IMPORTANT.
+    MOVING app.UseMvc() below app.Run() will give you different Results
+4)  Vs Code is pretty tricky when we create new folder make sure you are creating folder in root directory
+    if you intent to create inside a folder than it is OK.
+5)   We have just added Mvc Services in the pipe line but not used it services
+    To use it we need to add some page in the application but also add "@page" Directive inside the page
+    app.UseMvc() will not show its effect till we add some page.
+    Application will show string inside app.Run()
+    "<b>Hello World!</b>"
+6)  @page Directive is important if we miss it app.UseMvc() will not be able to find the page
+    index.cshtml is default after you use service MVC i.e. app.UseMvc();
+    i.e. app.UseMvc() will search for default route http://localhost:5000 
+7)  If you rename the index.cshtml to Free.cshtml then you will again see default string "Hello World"
+    but if you change the url from http://localhost:5000 to http://localhost:5000/Free then 
+    again the route works and page will be displayed. WOW
+8)  Route is File Struture. 
+    if we create a folder solange and create a file index.cshtml then 
+    http://localhost:5000/solange/ will show us content of index.cshtml
+    So index.cshtml is default.
+    But if we rename this file to 77.cshtml or create 77.cshtml then we will not be able to reach that file
+    we have to change the URL to  http://localhost:5000/solange/77 to reach the file 77.cshtml.
+    i.e.Folder Structure -  Pages/Solange/77.cshtml 
+9)  If you are changing the razor pages then we don't need to recompile the project
+    the razor pages are copied to the host and they are part of the source Code
+    cs file don't get copied but this cs file are converted to dll and this dll is copied 
+    to the host.
+    it seems in dotnet 2.1 we get two dll
+    1) <applicationname>.dll
+    2) <applicationname>.Views.dll - (Above Statment might be wrong)
+10) To Build the Project we must use "dotnet build" command
+    it builds/Compiles the project not run it(For running the project "dotnet run")
+11) To Publish the Project we must use "dotnet publish"
+    For the purpose of deployment we must use this command.
+12) Below line doesn't works it give Error 500 
+    <b>We must go ahead start it now @{ (2 + 2) } </b> -- Invalid Razor Syntax
+    To View the Yellow screen of dead we need to comment the below line for being time
+    //if (env.IsDevelopment())
+    {
+        app.UseDeveloperExceptionPage();
+    }
+******************************2 - 3 - ASP.NET Web Application - Configuration***************************************
+Note : [
+    (Ctrl + .) : intellense
+    Configration File : Default name is appsettings.json
+]
+1) appsettings.json - Default name for settings for the application
+    it is used for Configuration of your application i.e. ErrorEmailIDs,PageSize,DefaultPathes etc
+2) Depencdency Injection : inshort 
+    Whatever "Parameters" the Startup class constructor have will be given to the application by the
+    system. i.e. this parametes will be inject into the system.(Via @inject directives for views)
+3) So If IConfiguration is added as a parameter then we will be able to get IConfiguration
+    throughout the application as it is injected into the system
+    public class Startup
+    {
+        //We can use this inside the Startup But to use it inside the view 
+        //We need to add @inject directive
+        public IConfiguration Configuration { get; set; }
+        public Startup(IConfiguration config)
+        {
+            this.Configuration = config;
+        }
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.UseMvc(); // Use the Mvc service but it will not show any effect till we add pages
+
+            string Message = Configuration["Message"];
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync("<b>Hello World!</b>"+Message);
+            });
+        }
+    }
+    To use IConfiguration inside the view use below Code. For E.g.
+    @page
+    @using Microsoft.Extensions.Configuration
+    @inject IConfiguration Configuration
+
+    <h1>/Page/index.cshtml</h1>
+
+    <h2>
+        @Configuration["Message"]
+    </h2>
+    Note : [ 
+        We can use this Depencdency inject on many Interfaces/Classes etc
+        it is not limited to IConfiguration interface
+    ]
+4) Use (Crtl + .) for getting intellense 
+
