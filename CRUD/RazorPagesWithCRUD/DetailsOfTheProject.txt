@@ -1,0 +1,68 @@
+﻿Note : [
+	Peek Mode : Use Alt + F12(you can edit the class and also use Intelliense while in Peek Mode).
+	Go To Reference : Use F12 -> To directly jump to the class or interface etc.
+	Generate  -> (Alt + .) will active intellinse and then click on the required options
+	prop snipets -> write prop inside a class and press tab two times see the magic
+	RedirectToPage("/") -> Normally if your doing DB activity inside the controller use RedirectToPage
+]
+1) CRUD -> Create Read Update Delete 
+2) To do CRUD operations, we require Database(Place to save data so that we can then Create, Update, Delete and Read).
+3) We need to add AddDbContext in the services container and use UseInMemoryDatabase as shown below
+	services.AddDbContext<AppDbContext>();
+	AppDbContext class should be inherited by DbContext class (We will look into this in Entity Framework)		
+4) For now, We are using UseInMemoryDatabase by adding Microsoft.EntityFrameworkCore 
+	UseInMemoryDatabase("<DesiredName>") is a extension function.
+	Scope of this database starts from Application Start(run the application) Till Application End(Stop the App)
+	It should be used as shown below
+	services.AddDbContext<AppDbContext>(options => {
+		options.UseInMemoryDatabase("<DesiredName>");
+	});
+5)  AppDbContext -> Represents the Database in form of the Code.
+	a) We need to inherited this class with DbContext Class
+	b) Add your Database, Table inside this class in form of classess
+		i.e. if you want a Customer and Product table in the database add below line
+		public DbSet<Customer> Customers {get; set;}	
+		public DbSet<Product> Products { get; set;}
+	c) The Above class Customer and Product are known as POCO(Plain old CSharp Objects)
+		public AppDbContext : DbContext 
+		{
+			public AppDbContext(DbContextOptions options) : base(options) {}
+			public DbSet<Customer> Customers { get; set; } //Line A
+		}
+	d) DbSet contains set/List of Objects.
+	e) POCO's are normally Singular but when we use it in DbSet it becomes collection
+		Hence Line A contains Customers not Customer.
+6)  When we create a POCO we must add some attribute(Id or Name or Age etc) i.e. columns inside it 
+	a) Customer is Table name. Id and Name are column names associated with customer
+		public class Customer
+		{
+			public int Id {get; set;}
+			public string Name { get; set;}
+		}
+	b) Data Annonations -> Required, RegularExpressions, Range etc..
+		We must add Using Statement i.e. System.ComponentModel.DataAnnonations
+		This are useful when we need to add validations for this attributes(Columns).
+		public class Customer
+		{
+			public int Id {get; set;}
+			[Required,StringLength(50)]
+			public string Name { get; set;}
+		}
+	c)  StringLength -> manages the length of the attribute/column 
+7) Razor Pages -> Right Click on Pages Folder -> Select Razor pages -> 
+	a) Name of Page : <DesiredNameOfThePage>
+	b) Create PageModel - Code Behind of the Page(We UnCheck the Selection and do this inline).
+	c) While Creating a Page, Project scaffold's and also Build's itself to check for any potiential Errors.
+8) Razor Page - Initial Page has some directives 
+	@page - We can supply our query string name and type, 
+	@model - default model i.e. <NameOfthePage>Model, 
+	@sections - scripts etc.
+9) Razor Pages backend - This Class is always inherited with PageModel Class
+	Model Class i.e. <NameOfThePAge>Model 
+	OnGet() , OnPost() , OnDelete() etc. can be added inside this Model accordingly.
+
+
+		
+
+	
+
