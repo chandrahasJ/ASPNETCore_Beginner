@@ -27,7 +27,7 @@ namespace RazorPagesWithCRUD.Pages
 
             db.Cutomers.Add(Customer);
             await db.SaveChangesAsync();
-            return RedirectToPage("/");
+            return RedirectToPage("/Index");
         }
     }
 }

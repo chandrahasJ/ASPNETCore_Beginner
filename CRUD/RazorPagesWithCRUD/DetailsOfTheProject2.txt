@@ -1,5 +1,6 @@
 ﻿Note: [
-	[BindProperty] -> Survive the Journey()
+	[BindProperty] -> Survive the Journey(). 
+					  This Attribute binds with the public property on which it has been decorated.					  
 ]
 0) TagHelpers - Some Tags can be interpeted by Asp.Net's Complier to perform some operations on that tags
 	a) Purple Color Tags - This is tags are known as Tag Helper
@@ -7,6 +8,11 @@
 		those are only for the complier to understand given instructions.
 		For e.g.
 		<input asp-for="Customer.Name"/> // asp-for will be represented in purple color as it is Tag Helper.
+		In View Source,
+		<input type="text" data-val="true" 
+			data-val-length="The field Name must be a string with a maximum length of 10." 
+			data-val-length-max="10" data-val-required="The Name field is required."
+		id="Customer_Name" name="Customer.Name" value="">
 1) To access the class inside the cshtml page we must always add those Class inside the <NameOfThePage>Model.
 	i.e. public class CreateModel : PageModel
 		{			
@@ -40,12 +46,12 @@
 		RedirectToPagePermanent ->  301 Status -> Move it permanently from the Page.
 3) Run the Application : View Source - You will able to view some tags adding inside the Customer input tags
 						as per data annotations and it helps interperter for validations and other purpose's
-4) [BindProperty] - If you want to fill the object from Razor Page we use this attribute on that Object
-	i.e. For Being Time, On Post Action if Customer Object is filled then we must add [BindProperty] attribute on
-		Customer Object as shown below
+4) [BindProperty] - If you want to fill the object from Razor Page we use this Data Annonatation on that Object
+	i.e. For Being Time, On Post Action if you want to fill Customer Object then we must add [BindProperty]
+		Attribute  on Customer Property as shown below
 		[BindProperty]
 		public Customer Customer { get; set;}
-	After Adding [BindProperty] ModelState was able to check Model was in proper state or do validations.
+	After Adding [BindProperty], ModelState was able to check Model was in proper state or do validations.
 5) Validation Summary : If we want to display validation on the Razor page we must add below Tag Helper Attribute
 		e.g. <div asp-validation-summary="All"></div>
 	This Above Code must be added inside the Form Tag other wise it won't work.
@@ -56,9 +62,10 @@
 			 Below Should works fine.
 			 <span asp-validation-for="Customer.Name"></span>	
 	Note : [
-			The Tags used with Tag Helpers attributes must be closed properly
+			The Tags used with Tag Helpers attributes must be closed properly()
 			i.e. <p asp-*></p>
 	]
 7) RequestVerficationToken : Asp.net Core also add Request Vertification Token so that malicious user won't be able to temper with
-							 our request\stuff
+							 our request\stuff.
+8) 
 		

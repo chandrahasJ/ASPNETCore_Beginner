@@ -1,0 +1,15 @@
+﻿1) Remember to get Object in the razor page we need to add those objects inside <RazorPageName>Model.cs
+	Public IList<Customer> Customers {get; set;}
+2) To Use the above Customer Variable inside the Razor Page we need to Use Model.<NameOftheVariable>
+	i.e.
+		Public IList<Customer> Customers {get; set;} // Inside <RazorPageName>Model.cs	
+		//Inside Razor Pages
+		@foreach(var customer in Model.Customers)
+		{
+			@customer.ID <br/> @customer.Name
+		}
+3) To Get the data from the Object both in Razor Pages and Code Behind We need to decorate [BindProperty]
+	on the Object.
+4) AsNoTracking() - When we use this function we disable change tracking  functionality - Recommended only for Read-Only Data.
+5) Always use @before starting an C# Code.
+6) 
