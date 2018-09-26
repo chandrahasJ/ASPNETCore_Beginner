@@ -51,7 +51,7 @@
 	c)  StringLength -> manages the length of the attribute/column 
 7) Razor Pages -> Right Click on Pages Folder -> Select Razor pages -> 
 	a) Name of Page : <DesiredNameOfThePage>
-	b) Create PageModel - Code Behind of the Page(We UnCheck the Selection and do this inline).
+	b) Create PageModel - Code Behind of the Page(We Can UnCheck the Selection and do this inline by ourselfs()).
 	c) While Creating a Page, Project scaffold's and also Build's itself to check for any potiential Errors.
 8) Razor Page - Initial Page has some directives 
 	@page - We can supply our query string name and type, 

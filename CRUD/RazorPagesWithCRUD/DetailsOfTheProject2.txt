@@ -13,7 +13,7 @@
 			data-val-length="The field Name must be a string with a maximum length of 10." 
 			data-val-length-max="10" data-val-required="The Name field is required."
 		id="Customer_Name" name="Customer.Name" value="">
-1) To access the class inside the cshtml page we must always add those Class inside the <NameOfThePage>Model.
+1) To access the properties inside the cshtml page we must always add those Class inside the <NameOfThePage>Model.
 	i.e. public class CreateModel : PageModel
 		{			
 			private readonly AppDbContext _db; 	//Line B		
@@ -36,7 +36,7 @@
 		await db.SaveChangesAsync();  // Line C ->
 		return RedirectToPage("/");  //Line D -> 
 	}
-	a) Line A ->  Page() -> Returns IActionResult		
+	a) Line A ->  Page() -> Returns IActionResult & ModelState validation	
 	b) Line B -> Prompting Customer Object into Database
 	c) Line C -> Saving the changes from Page to DB 
 	d) Line D -> Redirecting the Page to any other page or different sites
@@ -44,21 +44,20 @@
 							   we have to add "/Index" for the route to work.
 							   302 Status 
 		RedirectToPagePermanent ->  301 Status -> Move it permanently from the Page.
-3) Run the Application : View Source - You will able to view some tags adding inside the Customer input tags
+3) Run the Application : View Source - You will able to view some tags added inside the Customer input tags
 						as per data annotations and it helps interperter for validations and other purpose's
-4) [BindProperty] - If you want to fill the object from Razor Page we use this Data Annonatation on that Object
-	i.e. For Being Time, On Post Action if you want to fill Customer Object then we must add [BindProperty]
+4) [BindProperty] - If you want to fill the property from the data inputed inside the Razor Page we use this Attribute on that property
+	i.e. For Being Time, On Post Action if you want to fill Customer property then we must decorate [BindProperty] in CreateModel class
 		Attribute  on Customer Property as shown below
 		[BindProperty]
 		public Customer Customer { get; set;}
 	After Adding [BindProperty], ModelState was able to check Model was in proper state or do validations.
-5) Validation Summary : If we want to display validation on the Razor page we must add below Tag Helper Attribute
+5) Validation Summary : If we want to display all the validation(Summary) on the Razor page we must add below Tag Helper Attribute
 		e.g. <div asp-validation-summary="All"></div>
 	This Above Code must be added inside the Form Tag other wise it won't work.
-6) asp-validation-for -> This is use for field by field validation.
-	i.e. let say you have three attribute and you want to display message only when issue occur's
+6) asp-validation-for -> This is use for field by field validation.	
 	e.g. <span asp-validation-for"Customer.Name"/> Line A
-	Line A : I was not able to view the Error Message it was not closed as per proper standards 
+	Line A : I was not able to view the Error Message as it was not closed as per proper standards i.e. <Open></Close>
 			 Below Should works fine.
 			 <span asp-validation-for="Customer.Name"></span>	
 	Note : [
@@ -67,5 +66,4 @@
 	]
 7) RequestVerficationToken : Asp.net Core also add Request Vertification Token so that malicious user won't be able to temper with
 							 our request\stuff.
-8) 
 		
