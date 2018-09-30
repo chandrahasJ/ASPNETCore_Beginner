@@ -8,21 +8,32 @@ using Microsoft.EntityFrameworkCore;
 
 namespace RazorPagesWithCRUD.Pages
 {
-    public class IndexModel : PageModel
-    {
-        private readonly AppDbContext _db;
-
-        public IndexModel(AppDbContext dbContext)
-        {
-            _db = dbContext;
+    public class IndexModel : MyPageModel
+    { 
+        public IndexModel(AppDbContext dbContext) : base(dbContext)
+        {            
         }
-        [BindProperty]
-        public IList<Customer> Customers { get; private set; }
 
         public async Task OnGetAsync()
         {
-            Customers = await _db.Cutomers.AsNoTracking().ToListAsync();
-
+            this.Customers = await _db.Cutomers.AsNoTracking().ToListAsync();
         }
+
+        public async Task<IActionResult> OnPostDeleteAsync(int deleteId)
+        {
+            var customer = _db.Cutomers.Find(deleteId);
+            if(customer != null)
+            {
+                _db.Cutomers.Remove(customer);
+                await _db.SaveChangesAsync();
+            }
+
+            return RedirectToPage();
+        }
+
+        //public Task<IActionResult> OnPostView(int viewId)
+        //{
+        //    return RedirectToPage("/View", viewId);
+        //}
     }
 }

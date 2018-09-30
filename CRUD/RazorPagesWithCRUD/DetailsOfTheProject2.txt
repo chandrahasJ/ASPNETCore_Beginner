@@ -40,9 +40,9 @@
 	b) Line B -> Prompting Customer Object into Database
 	c) Line C -> Saving the changes from Page to DB 
 	d) Line D -> Redirecting the Page to any other page or different sites
-		RedirectToPage("/") -> Gives error as / is not the route
-							   we have to add "/Index" for the route to work.
-							   302 Status 
+				 RedirectToPage("/") -> Gives error as "No Paged Named '/' matches the supplied values." 
+										we have to add "/Index" for the route to work as page index is present
+										302 Status 
 		RedirectToPagePermanent ->  301 Status -> Move it permanently from the Page.
 3) Run the Application : View Source - You will able to view some tags added inside the Customer input tags
 						as per data annotations and it helps interperter for validations and other purpose's
@@ -52,12 +52,14 @@
 		[BindProperty]
 		public Customer Customer { get; set;}
 	After Adding [BindProperty], ModelState was able to check Model was in proper state or do validations.
-5) Validation Summary : If we want to display all the validation(Summary) on the Razor page we must add below Tag Helper Attribute
+5) Validation Summary : If we want to display all the validation(Summary) on the Razor page at one location
+		then we must add below Tag Helper Attribute inside Form Tag
 		e.g. <div asp-validation-summary="All"></div>
 	This Above Code must be added inside the Form Tag other wise it won't work.
-6) asp-validation-for -> This is use for field by field validation.	
+6) asp-validation-for -> This is use for showing validation on the location where we require(Custom)
 	e.g. <span asp-validation-for"Customer.Name"/> Line A
-	Line A : I was not able to view the Error Message as it was not closed as per proper standards i.e. <Open></Close>
+	Line A : I was not able to view the Error Message as it was not closed as per proper standards 
+			 i.e. <Opening Tag></Closing Tag>
 			 Below Should works fine.
 			 <span asp-validation-for="Customer.Name"></span>	
 	Note : [

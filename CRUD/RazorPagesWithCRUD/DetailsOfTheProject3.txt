@@ -1,4 +1,10 @@
-﻿1) Remember : To get properties in the razor page  we need to add those properties inside <RazorPageName>Model.cs (Access Specifier : Public)
+﻿Note :[
+	a) Ctrl + F5 : Build without Debug(Loads up fast).
+	b) asp-page tag helper doesn't work in asp.net core 2.1
+
+]
+1) Remember : To get properties in the razor page we need to add those properties inside <RazorPageName>Model.cs (Access Specifier : Public)
+	Properties which have private access specifier which not been shown in the Razor Page Model Object
 	Public IList<Customer> Customers {get; set;}
 2) To Use the above Customer Variable inside the Razor Page we need to Use Model.<NameOftheVariable>
 	i.e.
@@ -11,4 +17,89 @@
 3) To Get the data from the properties both in Razor Pages and Code Behind We need to decorate the property with [BindProperty].
 4) AsNoTracking() - When we use this function we disable change tracking  functionality - Recommended only for Read-Only Data.
 5) Always use @before starting an C# Code inside Razor Pages.
-6) 
+6) While Creating PageModel Properties I find out that we were Not using DRY Model i.e. Don't Repeat Yourself
+	Hence I have done below following Steps 
+	1) Create My Own PageModel Page which Inherits The MVC's PageModel as shown below
+		public class MyPageModel : PageModel // Line A
+		{
+			protected readonly AppDbContext _db; // Line B
+			public MyPageModel(AppDbContext db){ _db = db  } // Line C
+			[BindProperty]							//Line D
+			public Customer Customer {get; set;}
+			[BindProperty]							//Line E
+			public IList<Customer> Customers {get; set;}
+		}
+		Line A -> MVC's PageModel was inherited by MyPageModel Class
+		Line B -> We have set access specifer as protected as we will inherited MyPageModel to other Razor Page Classes. 
+				  So that we can use it on that classes
+				  Readonly is because we wanted to initial it only once in our case we have used constructor dependancy injection.
+		Line C -> As AppDbContext was readonly hence we have initialized it inside the constructor.
+		Line D & E -> We are using BindProperty Attribute to notify the Compile that this property will be filled while CRUD operations
+					 and will be avaiable in the razor pages by calling Model.<PropertyName>
+	2) We had to change Razor Page Model Class & Also the Constructor of that Razor Page where we inherit MyPageModel as shown below
+		Let Says <PageName>Model i.e. for Create as PageName
+		public class CreateModel :MyPageModel //Line A
+		{
+			public CreateModel(AppDbContext db) : base(db) //Line B
+			{ 
+			}
+		}
+		Line A -> We are inheriting "MyPageModel" Class to "CreateModel" Razor Page Class
+		Line B -> We are initializing Base Class Constructor so that we can intialize protected AppDbContext inside MyPageModel.
+7) PRG(Post/Redirect/Get Pattern) - It is to solve the duplicate POST issue. it stops the data to submitted multiple times. 
+	https://www.stevefenton.co.uk/2011/04/asp-net-mvc-post-redirect-get-pattern/
+8) We will be using href tag for Edit(redirect) Operations & Button(Postback) for Delete Operations
+9) Tag helpers like asp-page, asp-page-handlers & asp-route-{value} will be used for Edit & Delete Operations
+	https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper?view=aspnetcore-2.1
+	a) asp-page -> This is an Anchor Tag Helper. 
+				asp-page attribute is used with Razor Pages.
+				asp-page is use to set an anchor's href tag value with specfic page.
+				<a asp-page="/<PageName>"><DesiredName></a>
+		Note :[
+			a) The PageName used inside the asp-page must be prefixed by Forward slash ("/").
+			b) asp-page can be used to asp-route-{value} to control the routing.		
+			c) asp-page call the normal call OnGet Method as it is used to redirect the page.
+			d) This doesn't work in asp.net core 2.1 
+				https://stackoverflow.com/questions/51813925/asp-net-core-2-1-mvc-scaffolding-doesnt-use-tag-helpers
+		]
+	b) asp-page-handler -> This is an Anchor Tag Helper used with Razor Pages
+						It's intended for linking the tag with specfic page handler in the <PageName>Model Class
+		Note:  [
+			a) On<Verb> prefix of the page handler method can be ommitted in the asp-page-handler attribute value.
+				i.e. if you method is pagemodel is OnPostView then in asp-page-handler attribute we can only 
+					 specifiy View 
+					 For e.g.
+					 public Task OnPostView(int Id) { return Page }
+					 <button type="submit" asp-page-handler="View" asp-route-id="1">View</button>
+			b) if the method is an asynchronous then async suffix can also be ommitted.
+		]
+		Code Behind :
+			public async Task<IActionResult> OnPostDeleteAsync(int deleteId)
+			{
+				//Code
+			}
+		Razor Pages :
+			<button type="submit" asp-page-handler="Delete" asp-route-deleteId="1">Delete Record</button>			
+	c) asp-route-{value} -> This attribute enables a wildcard route prefix.
+							Any Value occupying the {value} placeholder is interpreted as a potiental route placeholder.
+							i.e. if asp-route-id is used in the Tag 
+								then id will be argument used in the On<Verb> methods.
+							if the default route is not found then this route prefix is appended to the generated "href" attribute
+							as a request parameter and value.
+							i.e. let say we don't have "id" argument in an of On<Verb> method then query string.
+			<a asp-page="/<PageName>" asp-route-{value}="actual value"><DesiredName></a>
+10) Delete Funcunality 
+	<button type="submit" asp-page-handler="delete" asp-route-deleteId="@customer.Id">Delete</button>
+	public async Task<IActionResult> OnPostDeleteAsync(int deleteId)
+	{
+		var customer = _db.Customers.Find(deleteId);
+		if(customer != null)
+		{
+			_db.Customers.Remove(customer);
+			await _db.SaveChangeAsync();
+		}
+		return RedirectToPage();
+	}
+
+								 
+						

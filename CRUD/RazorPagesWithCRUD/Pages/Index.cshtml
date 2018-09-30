@@ -10,16 +10,26 @@
             <tr>
                 <th>ID</th>
                 <th>Customer Name</th>
+                <th>Operations</th>
             </tr>
         </thead>    
         <tbody>
+            <br />
+            <br />
             @foreach (var customer in Model.Customers)
             {
                 <tr>
                     <td>@customer.Id</td>
                     <td>@customer.Name</td>
+                    <td>
+                        <a asp-controller="./Edit" asp-route-id="@customer.Id">Edit</a>
+                        |
+                        <button type="submit" asp-page-handler="delete" asp-route-deleteId="@customer.Id">Delete</button>
+                        |
+                        <button type="button" asp-page-handler="View" asp-route-viewId="@customer.Id">View</button>
+                    </td>
                 </tr>
-            }
-        </tbody>       
+            } 
+        </tbody>               
     </table>
 </form>

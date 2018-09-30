@@ -59,7 +59,7 @@
 	@sections - scripts etc.
 9) Razor Pages backend - This Class is always inherited with PageModel Class
 	Model Class i.e. <NameOfThePAge>Model 
-	OnGet() , OnPost() , OnDelete() etc. can be added inside this Model accordingly.
+	On<Verb> i.e. OnGet() , OnPost() , OnDelete() etc. can be added inside this Model accordingly.
 
 
 		
