@@ -1,1 +1,83 @@
-﻿
+﻿Note : [
+	a) asp-page tag helper doesn't work in asp.net core 2.1 
+		To Make it work we need to add below code in the Startup.cs
+			services.AddMvc().AddRazorPagesOptions(options => {
+                options.RootDirectory = "/Pages";
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+]
+1) To setup the route data in the Razor Pages, we need to add those route data in @page directive as shown below
+	@page "{id:int}"
+2) We have to make sure that when we specify the route data we are providing proper datatype
+	let say if we have a pagemodel with integer argument in the On<Verb> method and we add @page "{id:string}".
+			 this above situation will cause error.
+	@page "{id:int}"
+	public async Task<IActionResult> OnGetAsync(int id)
+	{ 
+		//Code
+	}
+	----------------------------------------------------------------------------------------------------------------------
+	I tried access URL http://localhost:50602/Edit/CJ but got below error
+	No webpage was found for the web address: http://localhost:50602/Edit/CJ
+	----------------------------------------------------------------------------------------------------------------------
+	I changed below code and got the below compile time error occured
+	@page "{id:string}"
+	public async Task<IActionResult> OnGetAsync(int id)
+	{ 
+		//Code
+	}
+	Error : InvalidOperationException: The constraint entry 'id' - 'string' on the route 'Edit/{id:string}' could not be 
+	resolved by the constraintresolver of type 'DefaultInlineConstraintResolver'.
+	----------------------------------------------------------------------------------------------------------------------
+	I changed below code and got the below runtime error
+	@page "{id:int}"
+	public async Task<IActionResult> OnGetAsync(string id)
+	{ 
+		//Code
+	}
+	Error : The key value at position 0 of the call to 'DbSet<Customer>.Find' was of type 'string', 
+	which does not match the property type of 'int'.
+	----------------------------------------------------------------------------------------------------------------------	
+3)  Below is the Highlights of Code For Editing the Data.
+	Razor Page
+	@page "{id:int}"
+	<form method="post">
+		<div asp-validation-summary="All"></div>
+		<input type="hidden" asp-for="@Model.Customer.Id" />
+		<label asp-for="@Model.Customer.Name"></label> :
+		<input type="text" asp-for="@Model.Customer.Name" />
+		<span asp-validation-for="@Model.Customer.Name"></span>
+	</form>
+
+	Code Behind : PageModel
+	public async Task<IActionResult> OnGet(int id)
+	{	
+		//Code to get data from in memory database
+	}
+
+	public async Task<IActionResult> OnPost()
+	{
+		try
+		{
+			if(!ModelState.IsValid)
+			{
+				return Page(); //Go to current page
+			}
+			_db.Customer.Attach(Customer).State = EntityState.Modified;
+			await _db.SaveAsync();
+		}
+		catch(DbUpdateConcurrencyException e)
+		{
+			throw new Exception($"Customer {Customer.Name} not found.Try Again",e)
+		}
+		return RedirectToPage("/Index");
+	}
+4) asp-page-handler -> Due to this we can have multiple submit button inside one razor page 
+		In Index Page, we have two buttons with asp-page-handler attribute 
+		a) Delete handler 
+			<button type="submit" asp-page-handler="Delete" asp-route-deleteId="@Customer.Id">Delete</button>
+			public async Task<IActionResult> OnPostDeleteAsync(int deleteId)
+			{
+				//Code To Delete
+			}
+		b) View handler
+			

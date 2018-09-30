@@ -31,3 +31,5 @@ M:\MVA\MVATraining\ASPNETCore_Beginner\CRUD\RazorPagesWithCRUD\obj\Debug\netcore
 M:\MVA\MVATraining\ASPNETCore_Beginner\CRUD\RazorPagesWithCRUD\obj\Debug\netcoreapp2.1\RazorPagesWithCRUD.pdb
 M:\MVA\MVATraining\ASPNETCore_Beginner\CRUD\RazorPagesWithCRUD\obj\Debug\netcoreapp2.1\RazorPagesWithCRUD.csproj.CopyComplete
 M:\MVA\MVATraining\ASPNETCore_Beginner\CRUD\RazorPagesWithCRUD\obj\Debug\netcoreapp2.1\Razor\Pages\Create.g.cshtml.cs
+M:\MVA\MVATraining\ASPNETCore_Beginner\CRUD\RazorPagesWithCRUD\obj\Debug\netcoreapp2.1\Razor\Pages\Edit.g.cshtml.cs
+M:\MVA\MVATraining\ASPNETCore_Beginner\CRUD\RazorPagesWithCRUD\obj\Debug\netcoreapp2.1\Razor\Pages\View.g.cshtml.cs

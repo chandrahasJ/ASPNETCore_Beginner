@@ -21,8 +21,10 @@ namespace RazorPagesWithCRUD.Pages
                 return Page();
             }
 
-            this._db.Cutomers.Add(Customer);
+            this._db.Customers.Add(Customer);
             await _db.SaveChangesAsync();
+            Message = $"Customer {Customer.Name} has been added!!!!";
+
             return RedirectToPage("/Index");
         }
     }

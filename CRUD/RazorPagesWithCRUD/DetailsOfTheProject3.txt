@@ -1,7 +1,10 @@
 ﻿Note :[
 	a) Ctrl + F5 : Build without Debug(Loads up fast).
-	b) asp-page tag helper doesn't work in asp.net core 2.1
-
+	b) asp-page tag helper doesn't work in asp.net core 2.1 
+		To Make it work we need to add below code in the Startup.cs
+			services.AddMvc().AddRazorPagesOptions(options => {
+                options.RootDirectory = "/Pages";
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_0);
 ]
 1) Remember : To get properties in the razor page we need to add those properties inside <RazorPageName>Model.cs (Access Specifier : Public)
 	Properties which have private access specifier which not been shown in the Razor Page Model Object
@@ -61,6 +64,10 @@
 			c) asp-page call the normal call OnGet Method as it is used to redirect the page.
 			d) This doesn't work in asp.net core 2.1 
 				https://stackoverflow.com/questions/51813925/asp-net-core-2-1-mvc-scaffolding-doesnt-use-tag-helpers
+				I tried below code and it started working in 2.1
+				services.AddMvc().AddRazorPagesOptions(options => {
+					options.RootDirectory = "/Pages";
+				}).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 		]
 	b) asp-page-handler -> This is an Anchor Tag Helper used with Razor Pages
 						It's intended for linking the tag with specfic page handler in the <PageName>Model Class

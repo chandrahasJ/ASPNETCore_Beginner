@@ -15,6 +15,9 @@ namespace RazorPagesWithCRUD
             _db = db;
         }
         
+        [TempData]
+        public string Message { get; set; }
+
         [BindProperty]
         public Customer Customer { get; set; }
         [BindProperty]

@@ -16,24 +16,24 @@ namespace RazorPagesWithCRUD.Pages
 
         public async Task OnGetAsync()
         {
-            this.Customers = await _db.Cutomers.AsNoTracking().ToListAsync();
+            this.Customers = await _db.Customers.AsNoTracking().ToListAsync();
         }
 
         public async Task<IActionResult> OnPostDeleteAsync(int deleteId)
         {
-            var customer = _db.Cutomers.Find(deleteId);
+            var customer = _db.Customers.Find(deleteId);
             if(customer != null)
             {
-                _db.Cutomers.Remove(customer);
+                _db.Customers.Remove(customer);
                 await _db.SaveChangesAsync();
             }
 
             return RedirectToPage();
         }
 
-        //public Task<IActionResult> OnPostView(int viewId)
-        //{
-        //    return RedirectToPage("/View", viewId);
-        //}
+        public IActionResult OnPostView(int ViewId)
+        {
+            return RedirectToPage("/View", routeValues: new { ViewId = ViewId });
+        }
     }
 }

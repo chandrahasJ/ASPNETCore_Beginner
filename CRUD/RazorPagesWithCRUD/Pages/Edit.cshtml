@@ -1,8 +1,22 @@
-﻿@page
+﻿@page "{id:int}"
 @model RazorPagesWithCRUD.Pages.EditModel
 @{
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+<br/>
+<br/>
+<h2>Edit Customer - @Model.Customer.Name</h2>
+<form method="post">
+    <div asp-validation-summary="All"></div>
+    <input type="hidden" asp-for="@Model.Customer.Id"  />
+
+    <label asp-for="@Model.Customer.Name"></label>
+    <input type="text"  asp-for="Customer.Name" />
+    <br/>
+    <span asp-validation-for="Customer.Name"></span>
+    <div>
+        <button type="submit">Save</button>
+    </div>
+</form>
 

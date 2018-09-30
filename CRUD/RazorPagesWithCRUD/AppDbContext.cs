@@ -10,6 +10,6 @@ namespace RazorPagesWithCRUD
             
         }
 
-        public DbSet<Customer> Cutomers { get; set; }
+        public DbSet<Customer> Customers { get; set; }
     }
 }

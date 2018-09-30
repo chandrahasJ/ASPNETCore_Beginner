@@ -1,0 +1,25 @@
+﻿@page "ViewId:int"
+@model RazorPagesWithCRUD.Pages.ViewModel
+@{
+    ViewData["Title"] = "View";
+}
+
+<h2>View Customer - @Model.Customer.Name</h2>
+
+<table class="table table-bordered table-condensed">
+    <tr>
+        <td>Customer ID</td>
+        <td>@Model.Customer.Id</td>
+    </tr>
+    <tr>
+        <td>
+            Customer Name
+        </td>
+        <td>
+            @Model.Customer.Name
+        </td>
+    </tr>
+</table>
+
+<a asp-page="/Index">Go To Index</a>
+

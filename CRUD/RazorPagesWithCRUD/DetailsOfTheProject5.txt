@@ -1,0 +1,13 @@
+﻿1) If TempData attribute is decorated on the Property. It signifies that this properties belongs to PageModel not Database.
+2) As we have added TempData Property inside the MyPageModel we can now access those property whereever we have inherited 
+	MyPageModel Class i.e. In Razor Page and also Code Behind.
+3) I tried jquery to fadeIn to remove the message after 5 Second but it didn't work.
+4) We need to add jQuery in the @section Scripts to make it work as shown below
+	@seciton Scripts {
+		<script type="text/javascript">	
+			jQuery("document").ready(function(e){
+				$(".alert-info").delay(5000).fadeIn('slow');
+			});
+		</script>
+	}
+5) END,...
