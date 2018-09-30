@@ -1,0 +1,40 @@
+﻿1) appsettings.json & appsettings.development.json contains some information regarding Logging i.e. Log Level, Default etc.
+2) ILoggerFactory has to be injected inside Configure Method in Startup.cs
+	public void Configure(IApplicationBuilder app,
+						  IHostingEnvironment env,
+						  ILoggerFactory loggerFactory)
+	{
+		loggerFactory.AddConsole(); //Add's Logging in Console window
+		loggerFactory.AddDebug(); //???
+	}
+	Note :[
+		a) ILoggerFactory : We need to add using statement i.e. Microsoft.Extensions.Logging
+	]
+3) After Adding ILoggerFactory in the Configure Method, we have to use constructor dependency inject to use this log object
+	public ILogger<IndexModel> log;
+	public IndexModel(AppDbContext db, ILogger<IndexModel> _log)
+	{
+		//Assign db
+		log = _log;
+	}
+
+	public void OnGet()
+	{
+		logger.LogCritical("OnGet Called");
+		logger.LogInformation("We are having fun with Logging");
+	}
+
+	I was able to view this information in Output Windows -> Show Output from -> Debug	
+4) Application InSights
+	Right Click on the Project -> Add -> Application Insights Telemetry... 
+	--> Get Started --> Or just add the SDK to try local mode only
+	Now Right Click on the Project -> Edit Logging.csproj 
+	You will able to see that Application InSight has been added in the Application as a PackageRefernce
+	<PackageReference Include="Microdoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
+5) Application InSight has been added into you Toolbar while debugging 
+6) After adding the Application InSights we can now search through all the logs
+	I was able to find the logs which I had added i.e. LogCrtical & LogInformations
+7) Telemetry helps user to find similar kind of Logs. we can filter the logs etc
+	This could make our life easy.....
+END
+
